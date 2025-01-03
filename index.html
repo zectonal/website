@@ -4,13 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zectonal - Data Stability & Quality Monitoring for AI</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      rel="stylesheet"
+    />
     <style>
-      /* Modern, clean styling */
       :root {
         --primary: #875a97;
         --accent: #1590a1;
         --text: #333;
         --bg: #fff;
+        --dark-bg: #1c1c1c;
       }
 
       * {
@@ -20,161 +24,370 @@
       }
 
       body {
-        font-family: "Open Sans", sans-serif;
+        font-family: "Raleway", sans-serif;
         line-height: 1.6;
         color: var(--text);
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
+        overflow-x: hidden;
       }
 
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header Styles */
       header {
-        text-align: center;
-        padding: 40px 0;
+        background: white;
+        padding: 20px 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
 
       .logo {
-        max-width: 300px;
-        margin-bottom: 20px;
+        max-width: 200px;
       }
 
-      h1 {
-        font-size: 2.5em;
+      nav a {
+        color: var(--text);
+        text-decoration: none;
+        margin-left: 30px;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      nav a:hover {
         color: var(--primary);
-        margin-bottom: 20px;
       }
 
-      h2 {
-        font-size: 2em;
-        color: var(--primary);
-        margin: 40px 0 20px;
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(135deg, #1c1c1c 0%, #2d2d2d 100%);
+        color: white;
+        padding: 160px 0 80px;
+        position: relative;
+        overflow: hidden;
       }
 
-      .highlight {
-        color: var(--accent);
-      }
-
-      .features {
+      .hero-content {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: center;
+      }
+
+      .hero-text h1 {
+        font-size: 3em;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      .hero-text p {
+        font-size: 1.2em;
+        margin-bottom: 30px;
+        color: #ffffff99;
+      }
+
+      .hero-image {
+        position: relative;
+      }
+
+      .hero-image img {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Features Section */
+      .features {
+        padding: 80px 0;
+        background: white;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
         gap: 30px;
-        margin: 40px 0;
+        margin-top: 40px;
       }
 
-      .feature {
-        padding: 20px;
-        background: #f5f5f5;
-        border-radius: 8px;
+      .feature-card {
+        padding: 30px;
+        background: #f8f8f8;
+        border-radius: 10px;
+        transition: transform 0.3s;
       }
 
-      .feature h3 {
-        color: var(--primary);
-        margin-bottom: 15px;
+      .feature-card:hover {
+        transform: translateY(-5px);
       }
 
-      .cta-button {
+      .feature-icon {
+        width: 50px;
+        height: 50px;
+        background: var(--primary);
+        border-radius: 50%;
+        margin-bottom: 20px;
+      }
+
+      /* Buttons */
+      .button {
         display: inline-block;
         padding: 15px 30px;
         background: var(--primary);
         color: white;
         text-decoration: none;
         border-radius: 5px;
-        margin: 20px 0;
-        transition: background 0.3s;
+        font-weight: 500;
+        transition: all 0.3s;
       }
 
-      .cta-button:hover {
+      .button:hover {
         background: var(--accent);
+        transform: translateY(-2px);
       }
 
+      /* Slider */
+      .slider {
+        position: relative;
+        height: 100px;
+        overflow: hidden;
+      }
+
+      .slide {
+        position: absolute;
+        width: 100%;
+        opacity: 0;
+        transition: opacity 0.5s;
+        color: white;
+        font-size: 2.5em;
+      }
+
+      .slide.active {
+        opacity: 1;
+      }
+
+      /* About Section */
+      .about {
+        padding: 80px 0;
+        background: #f8f8f8;
+      }
+
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: center;
+      }
+
+      /* Footer */
       footer {
+        background: var(--dark-bg);
+        color: white;
+        padding: 60px 0 20px;
+        margin-top: 80px;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-bottom {
         text-align: center;
-        margin-top: 60px;
-        padding: 20px;
-        border-top: 1px solid #eee;
+        padding-top: 20px;
+        border-top: 1px solid #ffffff22;
+      }
+
+      /* Animations */
+      .animate-up {
+        animation: fadeInUp 1s both;
+      }
+
+      .animate-right {
+        animation: fadeInRight 1s both;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 968px) {
+        .hero-content,
+        .feature-grid,
+        .about-content {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          padding: 120px 0 60px;
+        }
+
+        .hero-text h1 {
+          font-size: 2.5em;
+        }
+
+        nav {
+          display: none;
+        }
       }
 
       @media (max-width: 768px) {
-        body {
-          padding: 10px;
-        }
-
-        .features {
-          grid-template-columns: 1fr;
+        .footer-content {
+          grid-template-columns: 1fr 1fr;
         }
       }
     </style>
   </head>
   <body>
     <header>
-      <h1>Zectonal</h1>
-      <p>Data Stability & Quality Monitoring for AI</p>
-      <a href="mailto:admin@zectonal.com" class="cta-button">Contact Us</a>
+      <div class="container header-content">
+        <img src="/api/placeholder/200/40" alt="Zectonal Logo" class="logo" />
+        <nav>
+          <a href="#features">Features</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
     </header>
 
-    <main>
-      <section>
-        <h2>AI Data Monitoring Solutions</h2>
-        <p>
-          Using blazingly fast software capabilities, we safely and securely
-          provide situational awareness for your data assets to increase your
-          confidence in leveraging AI and business intelligence for analytical
-          insights.
-        </p>
-      </section>
-
-      <section class="features">
-        <div class="feature">
-          <h3>Data Stability Monitoring using AI</h3>
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="hero-text animate-up">
+          <div class="slider">
+            <div class="slide active">
+              Scalable
+              <span style="color: var(--accent)">AI Agent Framework</span>
+            </div>
+            <div class="slide">
+              Data Monitoring for the
+              <span style="color: var(--accent)">AI Enterprise</span>
+            </div>
+            <div class="slide">
+              Deep Data Inspection™ for
+              <span style="color: var(--accent)">Multimodal AI</span>
+            </div>
+          </div>
           <p>
-            Zectonal uses a scalable framework of specialized intelligent AI
-            Agents to diagnose anomalies in data and facilitate root cause
-            analysis.
+            Using blazingly fast software capabilities, we safely and securely
+            provide situational awareness for your data assets.
+          </p>
+          <a href="#contact" class="button">Request a Product License</a>
+        </div>
+        <div class="hero-image animate-right">
+          <img src="/api/placeholder/600/400" alt="Zectonal Dashboard" />
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="features">
+      <div class="container">
+        <h2>Key Features</h2>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon"></div>
+            <h3>Data Stability Monitoring using AI</h3>
+            <p>
+              Zectonal uses a scalable framework of specialized intelligent AI
+              Agents to diagnose anomalies in data and facilitate root cause
+              analysis.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"></div>
+            <h3>Characterize Your Data</h3>
+            <p>
+              We provide robust data asset characterization, discovery, and ROI
+              analysis for enterprise data lakes and file systems.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"></div>
+            <h3>Multimodal Data Monitoring</h3>
+            <p>
+              Our Deep Data Inspection™ capability allows users to gain
+              confidence with their data in a multimodal AI world.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="container about-content">
+        <div class="about-text">
+          <h2>Our Story</h2>
+          <p>
+            We are former AWS executives and founders of the open source Apache
+            Metron real-time big data cybersecurity platform. We have operated
+            in the most sensitive data and security intensive industries on the
+            planet.
+          </p>
+          <p>
+            Zectonal was founded to address a need in AI for deeper analysis of
+            multimodal data and data stability monitoring.
           </p>
         </div>
-
-        <div class="feature">
-          <h3>Characterize Your Data</h3>
-          <p>
-            We provide robust data asset characterization, discovery, and ROI
-            analysis for enterprise data lakes and file systems.
-          </p>
+        <div class="about-image">
+          <img src="/api/placeholder/500/300" alt="Team" />
         </div>
-
-        <div class="feature">
-          <h3>Multimodal Data Monitoring</h3>
-          <p>
-            Our Deep Data Inspection™ capability allows users to gain
-            confidence with their data in a multimodal AI world.
-          </p>
-        </div>
-      </section>
-
-      <section>
-        <h2>About Us</h2>
-        <p>
-          We are former AWS executives and founders of the open source Apache
-          Metron real-time big data cybersecurity platform. Zectonal was founded
-          to address a need in AI for deeper analysis of multimodal data and
-          data stability monitoring.
-        </p>
-      </section>
-
-      <section>
-        <h2>Get Started</h2>
-        <p>
-          Ready to improve your data monitoring? Contact us to learn more about
-          our solutions.
-        </p>
-        <a href="mailto:contact@yourdomain.com" class="cta-button"
-          >Contact Us</a
-        >
-      </section>
-    </main>
+      </div>
+    </section>
 
     <footer>
-      <p>Zectonal LLC. &copy; 2024. All rights reserved.</p>
-      <p>901 N Glebe Road, 5th Floor, Arlington, Virginia, 22203</p>
+      <div class="container">
+        <div class="footer-content">
+          <div>
+            <h3>Contact</h3>
+            <p>901 N Glebe Road, 5th Floor<br />Arlington, Virginia, 22203</p>
+          </div>
+          <div>
+            <h3>Links</h3>
+            <nav>
+              <a href="#features">Features</a><br />
+              <a href="#about">About</a><br />
+              <a href="#contact">Contact</a>
+            </nav>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2024 Zectonal LLC. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
+
+    <script>
+      // Simple slider functionality
+      const slides = document.querySelectorAll(".slide");
+      let currentSlide = 0;
+
+      function nextSlide() {
+        slides[currentSlide].classList.remove("active");
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add("active");
+      }
+
+      setInterval(nextSlide, 4000);
+
+      // Scroll animations
+      document.addEventListener("scroll", () => {
+        const elements = document.querySelectorAll(
+          ".feature-card, .about-text, .about-image",
+        );
+        elements.forEach((element) => {
+          if (element.getBoundingClientRect().top < window.innerHeight * 0.8) {
+            element.classList.add("animate-up");
+          }
+        });
+      });
+    </script>
   </body>
 </html>
